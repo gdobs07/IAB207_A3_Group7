@@ -12,7 +12,56 @@
     <header>
 
         <!-- Navbar -->
-        <nav>
+        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#">ConcertCove
+                <div class="slogan">Find Your Vibe</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ED&Bpage.html">Event Details & Booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="create.html">Create Events</a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="booking.html">Booking History</a>
+                </li>
+                </ul>
+    
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Genre
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#upcoming-events">Rap</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">R&B</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">Pop</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">EDM</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">Rock</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">Dance</a></li>
+                        <li><a class="dropdown-item" href="#upcoming-events">Hip-Hop</a></li>
+    
+                      </ul>
+                    </li>
+                  </ul>
+                
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            </div>
         </nav>
 
         {% block header %}
