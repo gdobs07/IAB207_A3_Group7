@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<main class="container my-5">
+    <section class="event-details mb-5">
+        <img src="{{ event.image }}" alt="Event Image" class="img-fluid mb-3">
+        <h1>{{ event.name }}</h1> <!-- add different stuff for event name and artist name later-->
+        <p class="event-date"> {{ event.date }}</p>
+        <p class="event-time">{{ event.time }}</p>
+        <p class="event-venue">Venue: {{ event.venue }}</p>
+        <p class="event-description"> {{ event.description }}</p>
+    </section>
+<!-- fix booking later-->
+    <section class="booking mb-5">
+        <h2>Book Your Tickets</h2>
+        <form class="d-flex">
+            <label for="ticket-quantity" class="me-2 text-white">Quantity:</label>
+            <input type="number" id="ticket-quantity" name="ticket-quantity" min="1" max="10" class="form-control me-2">
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </section>
+
+    <section class="comments">
+        <h2>Comments</h2>
+        <ul class="list-unstyled mb-4">
+            <li class="mb-3">
+                <h3>User 1</h3>
+                <p>So excited for the event, can't wait to attend!</p>
+            </li>
+            <li>
+                <h3>User 2</h3>
+                <p>Looking forward to it!</p>
+            </li>
+        </ul>
+
+        <!-- fix comment area-->
+        <form class="add-comment">
+            <label for="comment" class="form-label">Add a comment:</label>
+            <textarea id="comment" name="comment" rows="3" class="form-control mb-3"></textarea>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    </section>
+</main>
+
+<div class="row">  
+    <div class="col-md-12">  
+      <h2>Comments</h2>  
+    </div>  
+  </div>  
+
+  <div class="row border-bottom"> 
+    {{ render_form(form,"/events/{0}/comment".format(event.id)) }}
+    
+    {% for comment in event.comments %}
+    <div class="col-md-12">  
+      <b>{{ comment.user }} <span class="ml-2 text-muted">January 2024</span></b>
+      <p>{{ comment.text }}</p>  
+    </div> 
+    {% endfor %} 
+  </div>  
+</div> 
+{% endblock %}
