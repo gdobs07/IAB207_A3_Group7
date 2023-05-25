@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <!-- Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <a href="index.html" class="carousel-link">
+                <div class="carousel-item active c-item">
+                    <img src="images/concert1.jpg" class="d-block w-100 c-img" alt="concert1">
+                    <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+                        <p class="mt-5 fs-3 text-uppercase">Discover new and exciting Events</p>
+                        <h1 class="display-1 fw-bolder text-capitalize">ConcertCove</h1>
+                        <a href="#upcoming-events"> <button class="btn btn-primary px-4 py-2 fs-5 mt-5 carousel-link">Discover Events</button> </a>
+                      </div>            
+                </div>
+            </a>
+            <a href="create.html" class="carousel-link">
+                <div class="carousel-item c-item">
+                    <img src="images/concert2.jpg" class="d-block w-100 c-img" alt="concert2">
+                    <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+                        <p class="mt-5 fs-3 text-uppercase">Create your very own Events</p>
+                        <h1 class="display-1 fw-bolder text-capitalize">ConcertCove</h1>
+                        <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Create an Event</button>
+                      </div> 
+                </div>
+            </a>
+            <a href="ED&Bpage.html" class="carousel-link">
+                <div class="carousel-item c-item">
+                    <img src="images/concert3.jpg" class="d-block w-100 c-img" alt="concert3">
+                    <div class="carousel-caption top-0 mt-5 d-none d-md-block">
+                        <p class="mt-5 fs-3 text-uppercase">Book and purchase tickets for your favourite artists</p>
+                        <h1 class="display-1 fw-bolder text-capitalize">ConcertCove</h1>
+                        <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Book Now</button>
+                      </div> 
+                </div>
+            </a>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+{% endblock %}
+
+{% block content %}   
+      <div class="container">
+         <div class="row mt-5 mb-5 justify-content-center">
+            <div class="col-md-10">
+               <div class="media border p-3 d-flex justify-content-start">
+                  <img class="align-self-center me-3" style="max-width:120px"
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Earth_Western_Hemisphere_transparent_background.png/600px-Earth_Western_Hemisphere_transparent_background.png"
+                     alt="Planet Earth">
+                  <div class="align-self-center media-body">
+                     <h5 class="mt-0">Find the best destinations on earth</h5>
+                     <p class="d-none d-sm-block">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                        scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                        turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+                     <a href="#" class="btn btn-primary">Join Now</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="card-group">
+            {% for destination in destinations %}
+            <div class="card mx-3">
+               <img class="card-img-top"
+                  src="{{ destination.image }}" alt="destination picture">
+               <div class="card-body">
+                  <h5 class="card-title">{{ destination.name }}</h5>
+                  <p class="card-text">{{ destination.description }}</p>
+               </div>
+               <div class="card-footer"><a href="{{ url_for('destination.show', id=destination.id) }}" class ="btn btn-danger"> View Details </a></div>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+{% endblock %}
