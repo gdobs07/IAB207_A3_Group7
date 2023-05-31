@@ -22,6 +22,9 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
     
+    testt
+
+
     
     
     
