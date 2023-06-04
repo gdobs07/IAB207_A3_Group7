@@ -26,13 +26,13 @@ def create_app():
     @app.errorhandler(404)
     def page_not_found(e): #error view function for a 404 page not found error
        
-        return render_template('404error.html'),404
+        return render_template('404error.html'),404 #returned render template for page not found error .html
 
 
     @app.errorhandler(500)
     def internal_server_error(e): #error view function for a 500 internal server error
         
-        return render_template('500error.html'),500
+        return render_template('500error.html'),500 #returned render template for internal server error .html
 
     
     #set the name of the login function that lets user login
