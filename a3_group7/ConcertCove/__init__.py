@@ -1,5 +1,5 @@
 #from package import Class
-from flask import Flask 
+from flask import Flask , render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -22,6 +22,18 @@ def create_app():
     
     #initialize the login manager
     login_manager = LoginManager()
+
+    @app.errorhandler(404)
+    def page_not_found(e): #error view function for a 404 page not found error
+       
+        return render_template('404error.html'),404
+
+
+    @app.errorhandler(500)
+    def internal_server_error(e): #error view function for a 500 internal server error
+        
+        return render_template('500error.html'),500
+
     
     #set the name of the login function that lets user login
     # in our case it is auth.login (blueprintname.viewfunction name)
