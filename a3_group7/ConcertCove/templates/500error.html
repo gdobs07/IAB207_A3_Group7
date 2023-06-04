@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Internal Server Error {% endblock %}
+
+{% block content %}
+<h1>Internel Server Error</h1>
+<p>Sorry, something seems to have gone wrong in our server.
+    <p><a href="{{ url_for('index') }}">Go back to the main page here </a>   <!-- A link to go back to the main
+    page -->
+{% endblock %}
