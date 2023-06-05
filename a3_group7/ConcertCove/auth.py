@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, render_template, request, url_for, redirect
-from werkzeug.security import generate_password_hash,check_password_hash
-from .models import User
+from werkzeug.security import generate_password_hash,check_password_hash # the error is here
+from .models import User #or here, but how and why I do not know humm
 from .forms import LoginForm,RegisterForm
 from flask_login import login_user, login_required,logout_user
 from . import db

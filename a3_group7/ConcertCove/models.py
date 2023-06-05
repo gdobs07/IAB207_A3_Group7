@@ -3,7 +3,6 @@ import sqlite3
 from . import db
 from datetime import datetime
 
-sqliteConnection = sqlite3.connect('Model.db') #this should create the overall database if the main runs i.e. we would add to the database through the website. If thiss causees issues when testing please delet.
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users' 
@@ -11,7 +10,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
-    comments = db.relationship('comment', backref='user')
+    comments = db.relationship('Comment', backref='user')
     
     
 class Event(db.Model):
@@ -24,7 +23,7 @@ class Event(db.Model):
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
     #cost = db.Column(db.String(5)) to be added if you guys want? -MS
-    comments = db.relationship('comment', backref='event')
+    comments = db.relationship('Comment', backref='event')
 	
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
@@ -36,7 +35,7 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     #add the foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    event_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
