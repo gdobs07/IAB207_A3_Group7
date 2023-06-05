@@ -1,7 +1,6 @@
 from flask_login import UserMixin
 import sqlite3
 from . import db
-from . import db
 from datetime import datetime
 
 sqliteConnection = sqlite3.connect('Model.db') #this should create the overall database if the main runs i.e. we would add to the database through the website. If thiss causees issues when testing please delet.
@@ -37,7 +36,7 @@ class Comment(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     #add the foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
 
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
