@@ -1,30 +1,31 @@
 from flask_login import UserMixin
+import sqlite3
 from . import db
 from . import db
 from datetime import datetime
 
-class User(db.Model):
-    __tablename__ = 'users' # good practice to specify table name
+sqliteConnection = sqlite3.connect('Model.db') #this should create the overall database if the main runs i.e. we would add to the database through the website. If thiss causees issues when testing please delet.
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'users' 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
-	#password is never stored in the DB, an encrypted password is stored
-	# the storage should be at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)
-
-    # relation to call user.comments and comment.created_by
-    comments = db.relationship('Comment', backref='user')
-
+    comments = db.relationship('comment', backref='user')
+    
+    
 class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
+    #artist = db.Column(db.String(80)) to be added if you guys want? -MS
+    status = db.Column(db.String(10))
+    genre = db.Column(db.String(20))
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
-    currency = db.Column(db.String(3))
-    # ... Create the Comments db.relationship
-	# relation to call destination.comments and comment.destination
-    comments = db.relationship('Comment', backref='event')
+    #cost = db.Column(db.String(5)) to be added if you guys want? -MS
+    comments = db.relationship('comment', backref='event')
 	
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)

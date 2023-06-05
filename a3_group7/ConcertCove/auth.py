@@ -6,9 +6,8 @@ from flask_login import login_user, login_required,logout_user
 from . import db
 
 #create a blueprint
-authbp = Blueprint('auth', __name__ )
-#authentification working... Mackenzie> below is from tutorial/demo example
-@authbp.route('/register', methods = ['GET', 'POST'])
+bp = Blueprint('auth', __name__ )
+@bp.route('/register', methods = ['GET', 'POST'])
 def register():
     register = RegisterForm()
     #the validation of form is fine, HTTP request is POST
@@ -34,7 +33,7 @@ def register():
     else:
         return render_template('user.html', form = register, heading = 'Register')
 
-@authbp.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     error = None
@@ -57,7 +56,7 @@ def login():
             flash(error)
     return render_template('user.html', form = login_form, heading = 'Login')
 
-@authbp.route('/logout')
+@bp.route('/logout')
 @login_required
 def logout():
     logout_user()
