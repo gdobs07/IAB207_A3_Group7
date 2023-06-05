@@ -3,14 +3,7 @@ from flask import Flask , render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-#from .models import User
-from ConcertCove import db, create_app
 
-app=create_app()
-ctx=app.app_context()
-ctx.push()
-db.drop_all() 
-db.create_all()
 
 db=SQLAlchemy()
 
@@ -30,6 +23,11 @@ def create_app():
     #initialize the login manager
     login_manager = LoginManager()
 
+    from .models import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     @app.errorhandler(404)
     def page_not_found(e): #error view function for a 404 page not found error
        
@@ -45,11 +43,6 @@ def create_app():
    
     login_manager.login_view='auth.login'
     login_manager.init_app(app)
-
-    
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
 
     
     from . import views
