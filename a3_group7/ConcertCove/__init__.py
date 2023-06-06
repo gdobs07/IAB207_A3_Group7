@@ -15,7 +15,7 @@ def create_app():
     app.debug=True
     app.secret_key='somesecretgoeshere'
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///mydbname.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///concert.db'
     #initialise db with flask app
     db.init_app(app)
 
