@@ -17,13 +17,14 @@ class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    artist = db.Column(db.String(80))
+    #artist = db.Column(db.String(80)) to be added if you guys want? -MS
     status = db.Column(db.String(10))
     genre = db.Column(db.String(20))
     description = db.Column(db.String(200))
     image = db.Column(db.String(400))
-    cost = db.Column(db.String(5))
+    #cost = db.Column(db.String(5)) to be added if you guys want? -MS
     comments = db.relationship('Comment', backref='event')
+    bookings = db.relationship('Booking', backref='event')
 	
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
@@ -42,13 +43,12 @@ class Comment(db.Model):
     
 class Booking(db.Model):
     __tablename__ = 'bookings'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(400))
+    booking_id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
     price = db.Column(db.Integer)
     ticket_quantity = db.Column(db.Integer)
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     def __repr__(self):
-        return "<Booking: {}>".format(self.name)
-    
+        return "<Booking: {}>".format(self.booking_id)
 
    
