@@ -39,3 +39,16 @@ class Comment(db.Model):
 
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
+    
+class Booking(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(400))
+    created_at = db.Column(db.DateTime, default=datetime.now())
+    price = db.Column(db.Integer)
+    ticket_quantity = db.Column(db.Integer)
+    def __repr__(self):
+        return "<Booking: {}>".format(self.name)
+    
+
+   
