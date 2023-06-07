@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+
 db=SQLAlchemy()
 
 #create a function that creates a web application
@@ -14,7 +15,7 @@ def create_app():
     app.debug=True
     app.secret_key='somesecretgoeshere'
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///mydbname.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///concert.sqlite'
     #initialise db with flask app
     db.init_app(app)
 
@@ -22,6 +23,12 @@ def create_app():
     
     #initialize the login manager
     login_manager = LoginManager()
+
+    from .models import User  # importing here to avoid circular references
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
 
     @app.errorhandler(404)
     def page_not_found(e): #error view function for a 404 page not found error
@@ -35,19 +42,10 @@ def create_app():
         return render_template('500error.html'),500 #returned render template for internal server error .html
 
     
-    #set the name of the login function that lets user login
-    # in our case it is auth.login (blueprintname.viewfunction name)
     login_manager.login_view='auth.login'
     login_manager.init_app(app)
 
-    #create a user loader function takes userid and returns User
-    #from .models import User  # importing here to avoid circular references
-    #@login_manager.user_loader
-    #def load_user(user_id):
-    #    return User.query.get(int(user_id))
-
-    #importing views module here to avoid circular references
-    # a common practice.
+   
     from . import views
     app.register_blueprint(views.bp)
 
