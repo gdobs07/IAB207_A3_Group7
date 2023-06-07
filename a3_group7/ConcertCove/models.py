@@ -21,7 +21,8 @@ class Event(db.Model):
     status = db.Column(db.String(10))
     genre = db.Column(db.String(20))
     description = db.Column(db.String(200))
-    image = db.Column(db.String(400))
+    image = db.Column(db.String(80), nullable=False, default='default.jpg')
+    venue = db.Column(db.String(60))
     #cost = db.Column(db.String(5)) to be added if you guys want? -MS
     comments = db.relationship('Comment', backref='event')
     bookings = db.relationship('Booking', backref='event')
