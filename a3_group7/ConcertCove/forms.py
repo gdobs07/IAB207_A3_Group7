@@ -1,6 +1,5 @@
-
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 
 
@@ -25,6 +24,17 @@ class RegisterForm(FlaskForm):
 class CommentForm(FlaskForm):  #User comment form
      text = TextAreaField('Comment here', [InputRequired()])
      submit = SubmitField('Send Comment')
+    
+
+class EventForm(Flaskform):
+    name=StringField('Event Name')
+    start_datetime = DateTimeField('Event Start DateTime')
+    end_datetime = DateTimeField('Event End DateTime') 
+    venue = StringField('Event Venue')
+    available_tickets = IntegerField('Available Tickets')
+    image = StringField('Image File Name')
+    description=TextAreaField('Description')
+    submit = SubmitField("Create Event")
     
     
 
