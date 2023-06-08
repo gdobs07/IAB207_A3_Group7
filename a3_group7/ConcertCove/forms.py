@@ -36,6 +36,11 @@ class EventForm(Flaskform): #creating create an event form
     description=TextAreaField('Event Description')
     submit = SubmitField("Create Event")
     
+class ContactForm(FlaskForm): # create contact form to contact an interested user. the form does not ask for the password
+    user_name = StringField('Name' )    
+    email = StringField('Email Address')
+    submit = SubmitField("Submit")
+    
     
 
     
