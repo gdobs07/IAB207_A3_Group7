@@ -24,3 +24,12 @@ def error_404():
 @bp.route('/500error')
 def error_500():
     return render_template('500error.html', title='500error')
+
+@bp.route('/contact', methods=['GET','POST']) # both get and post methods
+def create_contact():
+     print('In contact view function')
+     form = ContactForm()
+     if form.validate_on_submit():
+          print("Contact Form has been submitted successfully")
+          print(request.form['user_name'])
+     return redirect(url_for('main.index'))
