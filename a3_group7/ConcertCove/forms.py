@@ -33,7 +33,7 @@ class EventForm(Flaskform):
     venue = StringField('Event Venue')
     available_tickets = IntegerField('Available Tickets')
     image = StringField('Image File Name')
-    description=TextAreaField('Description')
+    description=TextAreaField('Event Description')
     submit = SubmitField("Create Event")
     
     
