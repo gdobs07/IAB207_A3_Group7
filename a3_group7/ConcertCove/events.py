@@ -20,7 +20,8 @@ def create():
   if form.validate_on_submit():
     db_file_path = check_upload_file(form)
     event = Event(name=form.name.data, description=form.description.data, 
-    image=db_file_path, status=form.status.data) 
+    image=form.image.data, start_datetime = form.start_datetime.data, end_datetime = form.end_datetime.data, venue = form.venue.data
+                 available_tickets = form.available.tickets.data) 
     # currency was changed to status from the in class example
     db.session.add(event)
     db.session.commit()
