@@ -21,7 +21,7 @@ def create():
     db_file_path = check_upload_file(form)
     event = Event(name=form.name.data, artist=form.artist.data, description=form.description.data, 
     image=form.image.data, start_datetime=form.start_datetime.data, end_datetime=form.end_datetime.data, venue=form.venue.data,
-    available_tickets=form.available.tickets.data)
+    available_tickets=form.available.tickets.data, cost=form.cost.data)
     #there is an issue above with artist and tickets
     db.session.add(event)
     db.session.commit()
