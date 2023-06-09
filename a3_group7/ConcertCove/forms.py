@@ -26,7 +26,7 @@ class CommentForm(FlaskForm):  #User comment form
      submit = SubmitField('Send Comment')
     
 
-class EventForm(Flaskform): #creating create an event form
+class EventForm(FlaskForm): #creating create an event form
     name=StringField('Event Name')
     start_datetime = DateTimeField('Event Start DateTime')
     end_datetime = DateTimeField('Event End DateTime') 
