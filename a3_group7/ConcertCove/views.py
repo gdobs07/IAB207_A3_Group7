@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import user_logged_in
+from flask_login import user_logged_in, login_required, current_user #login_required and current_user will work with a database with user information
+# a user will only be able to access a certain page if logged in
 from .forms import ContactForm, EventForm
 
 bp = Blueprint('main', __name__)
@@ -46,15 +47,17 @@ def create_contact():
      return redirect(url_for('main.index'))
 
 @bp.route('/create_event', methods=['GET', 'POST'])
+@login_required
 def create_event():
     if request.method == 'POST':
         pass  
     else:
         events = EventForm.query.all()  
-        return render_template('create_event.html', events=events)
+        return render_template('create_event.html', events=events, name=current_user.name)
     
 
 @bp.route('/booking_history')
+@login_required
 def booking_history():
     bookings = booking.query.filter_by(user_id=user_logged_in.id).all()  
-    return render_template('booking_history.html', bookings=bookings)
+    return render_template('booking_history.html', bookings=bookings, name=current_user.name)
