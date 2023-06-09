@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Event Details - ConcertCove
+{% endblock %}
+
+{% block content %}
+    <section class="event-details mb-5">
+        <img src="{{ url_for('static', filename='images' + Event.image) }}" alt="Event Image" class="img-fluid mb-3">
+        <h1>{{ event_title }}</h1>
+        <p class="event-date">Date: {{ Event.date }}</p>
+        <p class="event-time">Time: {{ Event.name }}</p>
+        <p class="event-venue">Venue: {{ Event.venue }}</p>
+        <p class="event-description">{{ Event.description }}</p>
+        <p class="event-description">{{ Event.venue }}</p>
+        <p class="event-description">{{ Event.cost }}</p>
+        <p class="event-description">{{ Event.genre }}</p>
+        <p class="event-description">{{ Event.artist }}</p>
+        <p class="event-description">{{ Event.status }}</p>
+    </section>
+
+    <section class="booking mb-5">
+        <h2>Book Your Tickets</h2>
+        <form class="d-flex">
+            <label for="ticket-quantity" class="me-2 text-white">Quantity:</label>
+            <input type="number" id="ticket-quantity" name="ticket-quantity" min="1" max="10" class="form-control me-2">
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </section>
+
+    <section class="comments">
+        <h2>Comments</h2>
+        <ul class="list-unstyled mb-4">
+            {% for comment in comments %}
+                <li class="mb-3">
+                    <h3>{{ Comment.user_id }}</h3>
+                    <p>{{ Comment.event_id }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form class="add-comment">
+            <label for="comment" class="form-label">Add a comment:</label>
+            <textarea id="comment" name="comment" rows="3" class="form-control mb-3"></textarea>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    </section>
+{% endblock %}

@@ -14,6 +14,14 @@ def index():
 def create():
     return render_template('create.html', title='Create')
 
+@bp.route('/booking')
+def booking():
+    return render_template('booking.html', title='Booking')
+
+@bp.route('/event_details')
+def event_details():
+    return render_template('event_details.html', title='Event Details')
+
 @bp.route('/show')
 def show():
     return render_template('show.html', title='Show')

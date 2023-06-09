@@ -48,6 +48,7 @@ class Booking(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     price = db.Column(db.Integer)
     ticket_quantity = db.Column(db.Integer)
+    image = db.Column(db.String(80), nullable=False, default='default.jpg')
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     def __repr__(self):
         return "<Booking: {}>".format(self.booking_id)

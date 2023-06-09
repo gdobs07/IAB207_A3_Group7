@@ -12,7 +12,7 @@
             <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <a href="index.html" class="carousel-link">
+            <a href="{{url_for('index')}}" class="carousel-link">
                 <div class="carousel-item active c-item">
                     <img src="{{url_for('images',filename='concert1.jpg')}}" class="d-block w-100 c-img" alt="concert1">
                     <div class="carousel-caption top-0 mt-5 d-none d-md-block">
@@ -22,7 +22,7 @@
                       </div>            
                 </div>
             </a>
-            <a href="create.html" class="carousel-link">
+            <a href="{{url_for('events',filename='create')}}" class="carousel-link">
                 <div class="carousel-item c-item">
                     <img src="{{url_for('images',filename='concert2.jpg')}}" class="d-block w-100 c-img" alt="concert2">
                     <div class="carousel-caption top-0 mt-5 d-none d-md-block">
