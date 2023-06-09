@@ -4,6 +4,7 @@ from .forms import EventForm, CommentForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
+from flask_login import login_required, current_user
 
 destbp = Blueprint('event', __name__, url_prefix='/events')
 
@@ -14,6 +15,7 @@ def show(id):
     return render_template('events/show.html', event=event, form=cform)
 
 @destbp.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
   print('Method type: ', request.method)
   form = EventForm()
@@ -27,7 +29,7 @@ def create():
     db.session.commit()
     print('Successfully created new travel event', 'success')
     return redirect(url_for('event.create'))
-  return render_template('event/create.html', form=form) 
+  return render_template('event/create.html', form=form, name=current_user.name) 
 
 def check_upload_file(form): 
   fp = form.image.data
@@ -39,6 +41,7 @@ def check_upload_file(form):
   return db_upload_path
 
 @destbp.route('/<event>/comment', methods=['GET', 'POST'])  
+@login_required
 def comment(event):  
     form = CommentForm()  
     event = db.session.scalar(db.select(Event).where(Event.id==event))  
