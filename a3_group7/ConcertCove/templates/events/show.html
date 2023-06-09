@@ -6,7 +6,8 @@
 <main class="container my-5">
     <section class="event-details mb-5">
         <img src="{{ event.image }}" alt="Event Image" class="img-fluid mb-3">
-        <h1>{{ event.name }}</h1> <!-- add different stuff for event name and artist name later-->
+        <h1>{{ event.name }}</h1> 
+        <h2>{{ event.artist }}</h2>
         <p class="event-date"> {{ event.date }}</p>
         <p class="event-time">{{ event.time }}</p>
         <p class="event-venue">Venue: {{ event.venue }}</p>
@@ -55,7 +56,7 @@
     
     {% for comment in event.comments %}
     <div class="col-md-12">  
-      <b>{{ comment.user }} <span class="ml-2 text-muted">January 2024</span></b>
+      <b>{{ comment.user }} <span class="ml-2 text-muted"> {{ comment.created_at }}</span></b>
       <p>{{ comment.text }}</p>  
     </div> 
     {% endfor %} 

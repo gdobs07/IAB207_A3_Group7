@@ -17,13 +17,13 @@ class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    #artist = db.Column(db.String(80)) to be added if you guys want? -MS
+    artist = db.Column(db.String(80)) 
     status = db.Column(db.String(10))
     genre = db.Column(db.String(20))
     description = db.Column(db.String(200))
     image = db.Column(db.String(80), nullable=False, default='default.jpg')
     venue = db.Column(db.String(60))
-    #cost = db.Column(db.String(5)) to be added if you guys want? -MS
+    cost = db.Column(db.String(5)) 
     comments = db.relationship('Comment', backref='event')
     bookings = db.relationship('Booking', backref='event')
 	

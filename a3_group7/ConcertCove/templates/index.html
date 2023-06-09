@@ -66,11 +66,14 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ event.name }}</h5>
                         <div class="card-status text-white">
+                            <h6>Artist: <span class="artist-text">{{ event.artist }}</span></h6>
+                        </div>
+                        <div class="card-status text-white">
                             <h6>Status: <span class="status-text">{{ event.status }}</span></h6>
-                          </div>
-                          <div class="card-genre text-white">
+                        </div>
+                        <div class="card-genre text-white">
                             <h6>Genre: <span class="genre-text">{{ event.genre }}</span></h6>
-                          </div>
+                        </div>
                         <p class="card-text">{{ event.description }}</p>
                     </div>
                 </div>
