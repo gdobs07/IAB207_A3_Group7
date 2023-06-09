@@ -14,6 +14,8 @@ class RegisterForm(FlaskForm):
     user_name=StringField("User Name", validators=[InputRequired()])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
     #linking two fields - password should be equal to data entered in confirm
+    contact_number = IntegerField("Primary Contact Number")
+    address = StringField("Home Address") # user needs to provide contact number and address based on assessment proj requirements to register
     password=PasswordField("Password", validators=[InputRequired(),
                   EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
