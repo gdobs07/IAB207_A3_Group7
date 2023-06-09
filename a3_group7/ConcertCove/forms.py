@@ -28,6 +28,7 @@ class CommentForm(FlaskForm):  #User comment form
 
 class EventForm(FlaskForm): #creating create an event form
     name=StringField('Event Name')
+    artist=StringField('Event Artist')
     start_datetime = DateTimeField('Event Start DateTime')
     end_datetime = DateTimeField('Event End DateTime') 
     venue = StringField('Event Venue')

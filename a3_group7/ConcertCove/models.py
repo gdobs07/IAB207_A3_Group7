@@ -11,6 +11,8 @@ class User(UserMixin, db.Model):
     emailid = db.Column(db.String(100), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Comment', backref='user')
+    bookings = db.relationship('Booking', backref='user', lazy=True)
+
     
     
 class Event(db.Model):

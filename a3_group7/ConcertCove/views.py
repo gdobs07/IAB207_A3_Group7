@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .forms import ContactForm
+from flask_login import user_logged_in
+from .forms import ContactForm, EventForm
 
 bp = Blueprint('main', __name__)
 
@@ -9,6 +10,7 @@ bp = Blueprint('main', __name__)
 @bp.route('/index')
 def index():
     return render_template('index.html', title='Home')
+
 
 @bp.route('/create')
 def create():
@@ -42,3 +44,17 @@ def create_contact():
           print("Contact Form has been submitted successfully")
           print(request.form['user_name'])
      return redirect(url_for('main.index'))
+
+@bp.route('/create_event', methods=['GET', 'POST'])
+def create_event():
+    if request.method == 'POST':
+        pass  
+    else:
+        events = EventForm.query.all()  
+        return render_template('create_event.html', events=events)
+    
+
+@bp.route('/booking_history')
+def booking_history():
+    bookings = booking.query.filter_by(user_id=user_logged_in.id).all()  
+    return render_template('booking_history.html', bookings=bookings)
